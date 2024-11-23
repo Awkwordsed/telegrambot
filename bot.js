@@ -1,7 +1,7 @@
 const jalaali = require('jalaali-js');
 
 const TelegramBot = require('node-telegram-bot-api');
-const token = '7992454375:AAFCkw_3XYP1_sSrd8ou0Fz4aIoZq0D9yGg';
+const token = '';
 const bot = new TelegramBot(token, {polling: true});
 
 const cache = {};
@@ -15,7 +15,7 @@ const getInfo = (msg) => {
 };
 
 const getWeather = async (msg) => {
-  let endpoint = 'http://wttr.in/ardabil?format=3';
+  let endpoint = 'http://wttr.in/tehran?format=3';
   const response = await fetch(endpoint, { method: 'GET' });
   const data = await response.text();
   return `${data}`;
@@ -33,14 +33,6 @@ const main = async (msg) => {
   cache[cacheKey] = allResult; // cache the result
   return allResult;
 };
-
-
-// bot.on('message', (msg) => {
-//   if (msg.text === '/start') {
-//     const chatId = msg.chat.id;
-//     bot.sendMessage(chatId, 'Welcome');
-//   }
-// });
 
 bot.on('message', (msg) => {
   if (msg.text === '/today') {
